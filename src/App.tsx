@@ -17,17 +17,17 @@ const PROJECTS = [
     tag: 'API REST', title: 'Pedreno Store', highlight: true,
     desc: 'Sistema de gestão de crediário (fiado) para pequenos comércios. API completa com autenticação JWT, controle de roles, suporte a compras multi-item e testes automatizados.',
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit 5', 'Mockito'],
-    link: 'https://github.com/EdsonJuni0r',
+    link: 'https://github.com/EdsonJuni0r/portfolio',
   },
   {
     tag: 'IoT / Mobile', title: 'Monitor de Gases – SUPER Samsung',
     desc: 'Sistema de monitoramento ambiental com sensores de gás, ESP32 e microcontroladores. Comunicação em tempo real via protocolo MQTT.',
-    stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'], link: 'https://github.com/EdsonJuni0r',
+    stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'], link: 'https://github.com/EdsonJuni0r/portfolio',
   },
   {
     tag: 'Web App', title: 'Biblioteca Digital Acadêmica',
     desc: 'Plataforma web para acervo digital da UFAM. Testes unitários, manutenção evolutiva e colaboração em equipe de desenvolvimento.',
-    stack: ['JavaScript', 'Node.js', 'React', 'PostgreSQL'], link: 'https://github.com/EdsonJuni0r',
+    stack: ['JavaScript', 'Node.js', 'React', 'PostgreSQL'], link: 'https://github.com/EdsonJuni0r/portfolio',
   },
 ]
 
