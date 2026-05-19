@@ -105,7 +105,7 @@ function Hero() {
       <div className="hero__inner">
         <span className="hero__tag"><span className="dot"/>disponível para novos projetos</span>
         <h1 className="hero__name">Edson <span className="hero__accent">Junior</span></h1>
-        <p className="hero__title">Engenheiro de Software&nbsp;·&nbsp;QA&nbsp;·&nbsp;Suporte T.I</p>
+        <p className="hero__title">Engenheiro de Software&nbsp;·&nbsp;Suporte T.I</p>
         <p className="hero__sub">Baseado em Barreirinha, AM — construindo soluções digitais robustas com Java, Spring Boot, React e TypeScript.</p>
         <div className="hero__actions">
           <a href="#projetos" className="btn btn--primary">Ver Projetos</a>
@@ -133,8 +133,8 @@ function About() {
         <div className="about__grid">
           <div className="about__text">
             <h2 className="section-title">Tecnologia na veia,<br/><span className="teal">qualidade como padrão.</span></h2>
-            <p>Sou Engenheiro de Software formado pela UFAM, com experiência prática em suporte técnico em Unidades de Saúde e desenvolvimento de software. Atualmente curso Pós-Graduação em <strong>Engenharia da Qualidade de Software</strong>.</p>
-            <p>Minha rotina mistura atendimento técnico no campo — com sistemas como e-SUS APS e ERPs de saúde — e desenvolvimento de projetos pessoais focados em <strong>APIs REST</strong>, testes automatizados e boas práticas de engenharia.</p>
+            <p>Sou Engenheiro de Software formado pela UFAM, com experiência prática em Suporte Técnico em Unidades de Saúde e Desenvolvimento de Softwares . Atualmente curso Pós-Graduação em <strong>Engenharia da Qualidade de Software</strong>.</p>
+            <p>Minha rotina mistura atendimento técnico — com sistemas como e-SUS APS e ERPs de saúde — e desenvolvimento de projetos pessoais, para soluções digitais focadas em <strong>APIs REST</strong>, testes automatizados e boas práticas de engenharia.</p>
             <p>Fundei a <span className="teal">Pedreno Tech &amp; Infra</span> para oferecer soluções digitais e de infraestrutura pensadas para a realidade de Barreirinha e região.</p>
             <div className="about__chips">
               {['Proativo','Comunicativo','Orientado a qualidade','Aprendizado contínuo','Trabalho em equipe'].map(t=>(
