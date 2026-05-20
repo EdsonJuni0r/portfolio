@@ -1,3 +1,4 @@
+import ProjectMedia, { type MediaItem } from './ProjectMedia'
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
@@ -12,22 +13,44 @@ const SERVICES = [
   { icon: '📋', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
 ]
 
+// ── Projects Data ──────────────────────────────────────────────────
+// Para adicionar mídia real substitua os placeholders:
+//   { type: 'image', src: '/portfolio/img/nome.png', alt: 'Descrição' }
+//   { type: 'video', src: '/portfolio/video/demo.mp4' }
+//   { type: 'placeholder', label: 'Em breve', color: '#0d1830' }
+
 const PROJECTS = [
   {
-    tag: 'API REST', title: 'Pedreno Store', highlight: true,
+    tag: 'API REST', title: 'Pedreno Store', subtitle: 'Sistema de Gestão de Crediário', highlight: true,
     desc: 'Sistema de gestão de crediário (fiado) para pequenos comércios. API completa com autenticação JWT, controle de roles, suporte a compras multi-item e testes automatizados.',
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit 5', 'Mockito'],
-    link: 'https://github.com/EdsonJuni0r/portfolio',
+    link: 'https://github.com/EdsonJuni0r',
+    media: [
+      // Substitua pelos caminhos reais após adicionar as imagens em public/img/
+      // { type: 'image', src: '/portfolio/img/pedreno-auth.png', alt: 'Autenticação JWT' },
+      // { type: 'video', src: '/portfolio/video/pedreno-demo.mp4' },
+      { type: 'video', src: '/portfolio/video/1128.mp4'},
+    ] as MediaItem[],
   },
   {
-    tag: 'IoT / Mobile', title: 'Monitor de Gases – SUPER Samsung',
+    tag: 'IoT / Mobile', title: 'Monitor de Gases', subtitle: 'Projeto SUPER Samsung – UFAM',
     desc: 'Sistema de monitoramento ambiental com sensores de gás, ESP32 e microcontroladores. Comunicação em tempo real via protocolo MQTT.',
-    stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'], link: 'https://github.com/EdsonJuni0r/portfolio',
+    stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'],
+    link: 'https://github.com/EdsonJuni0r',
+    media: [
+      { type: 'image', src: '/portfolio/img/Captura de tela 2025-12-07 133938.png', alt: 'App Mobile – Leituras', color: '#0a1628' },
+      { type: 'placeholder', label: 'Dashboard Sensores',    color: '#0d1e38' },
+    ] as MediaItem[],
   },
   {
-    tag: 'Web App', title: 'Biblioteca Digital Acadêmica',
+    tag: 'Web App', title: 'Biblioteca Digital', subtitle: 'Acervo Acadêmico – UFAM',
     desc: 'Plataforma web para acervo digital da UFAM. Testes unitários, manutenção evolutiva e colaboração em equipe de desenvolvimento.',
-    stack: ['JavaScript', 'Node.js', 'React', 'PostgreSQL'], link: 'https://github.com/EdsonJuni0r/portfolio',
+    stack: ['JavaScript', 'Node.js', 'React', 'PostgreSQL'],
+    link: 'https://github.com/EdsonJuni0r',
+    media: [
+      { type: 'placeholder', label: 'Listagem de Publicações', color: '#0a1628' },
+      { type: 'placeholder', label: 'Busca e Filtros',         color: '#0d1e38' },
+    ] as MediaItem[],
   },
 ]
 
@@ -105,7 +128,7 @@ function Hero() {
       <div className="hero__inner">
         <span className="hero__tag"><span className="dot"/>disponível para novos projetos</span>
         <h1 className="hero__name">Edson <span className="hero__accent">Junior</span></h1>
-        <p className="hero__title">Engenheiro de Software&nbsp;·&nbsp;Suporte T.I</p>
+        <p className="hero__title">Engenheiro de Software&nbsp;·&nbsp;QA&nbsp;·&nbsp;Suporte T.I</p>
         <p className="hero__sub">Baseado em Barreirinha, AM — construindo soluções digitais robustas com Java, Spring Boot, React e TypeScript.</p>
         <div className="hero__actions">
           <a href="#projetos" className="btn btn--primary">Ver Projetos</a>
@@ -133,8 +156,8 @@ function About() {
         <div className="about__grid">
           <div className="about__text">
             <h2 className="section-title">Tecnologia na veia,<br/><span className="teal">qualidade como padrão.</span></h2>
-            <p>Sou Engenheiro de Software formado pela UFAM, com experiência prática em Suporte Técnico em Unidades de Saúde e Desenvolvimento de Softwares . Atualmente curso Pós-Graduação em <strong>Engenharia da Qualidade de Software</strong>.</p>
-            <p>Minha rotina mistura atendimento técnico — com sistemas como e-SUS APS e ERPs de saúde — e desenvolvimento de projetos pessoais, para soluções digitais focadas em <strong>APIs REST</strong>, testes automatizados e boas práticas de engenharia.</p>
+            <p>Sou Engenheiro de Software formado pela UFAM, com experiência prática em suporte técnico em Unidades de Saúde e desenvolvimento de software. Atualmente curso Pós-Graduação em <strong>Engenharia da Qualidade de Software</strong>.</p>
+            <p>Minha rotina mistura atendimento técnico no campo — com sistemas como e-SUS APS e ERPs de saúde — e desenvolvimento de projetos pessoais focados em <strong>APIs REST</strong>, testes automatizados e boas práticas de engenharia.</p>
             <p>Fundei a <span className="teal">Pedreno Tech &amp; Infra</span> para oferecer soluções digitais e de infraestrutura pensadas para a realidade de Barreirinha e região.</p>
             <div className="about__chips">
               {['Proativo','Comunicativo','Orientado a qualidade','Aprendizado contínuo','Trabalho em equipe'].map(t=>(
@@ -187,19 +210,31 @@ function Projects() {
       <div className="container">
         <SectionLabel>trabalhos recentes</SectionLabel>
         <h2 className="section-title">Projetos em <span className="teal">Destaque</span></h2>
-        <div className="projects__grid">
+        <div className="projects__list">
           {PROJECTS.map((p,i)=>(
-            <div key={i} className={`project-card${p.highlight?' project-card--highlight':''}`}>
-              <div className="project-card__header">
-                <span className="project-card__tag">{p.tag}</span>
-                {p.highlight && <span className="project-card__badge">⭐ Principal</span>}
+            <div key={i} className={`project-item${p.highlight?' project-item--highlight':''}`}>
+              {/* Media (esquerda em desktop, topo em mobile) */}
+              <div className="project-item__media">
+                <ProjectMedia media={p.media} title={p.subtitle || p.title} />
               </div>
-              <h3 className="project-card__title">{p.title}</h3>
-              <p className="project-card__desc">{p.desc}</p>
-              <div className="project-card__stack">
-                {p.stack.map(s=><span key={s} className="stack-pill">{s}</span>)}
+              {/* Info (direita em desktop) */}
+              <div className="project-item__info">
+                <div className="project-item__meta">
+                  <span className="project-card__tag">{p.tag}</span>
+                  {p.highlight && <span className="project-card__badge">⭐ Principal</span>}
+                </div>
+                <h3 className="project-item__title">{p.title}</h3>
+                {p.subtitle && <p className="project-item__subtitle">{p.subtitle}</p>}
+                <p className="project-card__desc">{p.desc}</p>
+                <div className="project-card__stack">
+                  {p.stack.map(s=><span key={s} className="stack-pill">{s}</span>)}
+                </div>
+                <div className="project-item__actions">
+                  <a href={p.link} target="_blank" rel="noreferrer" className="btn btn--outline btn--sm">
+                    <GitHubIcon /> Ver no GitHub
+                  </a>
+                </div>
               </div>
-              <a href={p.link} target="_blank" rel="noreferrer" className="project-card__link">Ver no GitHub →</a>
             </div>
           ))}
         </div>
