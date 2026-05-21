@@ -24,7 +24,8 @@ const PROJECTS = [
     tag: 'API REST', title: 'Pedreno Store', subtitle: 'Sistema de Gestão de Crediário', highlight: true,
     desc: 'Sistema de gestão de crediário (fiado) para pequenos comércios. API completa com autenticação JWT, controle de roles, suporte a compras multi-item e testes automatizados.',
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit 5', 'Mockito'],
-    link: 'https://github.com/EdsonJuni0r',
+    stackfront: ['React', 'TypeScript', 'Tailwind CSS'],
+    link: 'https://github.com/EdsonJuni0r/pedrenostore-api.git',
     media: [
       // Substitua pelos caminhos reais após adicionar as imagens em public/img/
       // { type: 'image', src: '/portfolio/img/pedreno-auth.png', alt: 'Autenticação JWT' },
@@ -228,6 +229,7 @@ function Projects() {
                 <p className="project-card__desc">{p.desc}</p>
                 <div className="project-card__stack">
                   {p.stack.map(s=><span key={s} className="stack-pill">{s}</span>)}
+                  {p.stackfront && p.stackfront.map(s=><span key={s} className="stack-pill">{s}</span>)}
                 </div>
                 <div className="project-item__actions">
                   <a href={p.link} target="_blank" rel="noreferrer" className="btn btn--outline btn--sm">
