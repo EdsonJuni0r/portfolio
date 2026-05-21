@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './ProjectMedia.css'
 
 export type MediaItem =
@@ -38,7 +38,6 @@ function PlaceholderSlide({ label, color }: { label: string; color?: string }) {
 function VideoSlide({ src, poster }: { src: string; poster?: string }) {
   return (
     <div className="media-video">
-      {/* O vídeo agora roda automaticamente, em loop de forma silenciosa e nativa */}
       <video 
         src={src} 
         poster={poster} 
@@ -53,10 +52,24 @@ function VideoSlide({ src, poster }: { src: string; poster?: string }) {
 }
 
 export default function ProjectMedia({ media, title }: ProjectMediaProps) {
-  // Mantemos o estado caso você queira controlar mídias estáticas no futuro,
-  // mas os elementos visuais de controle de clique foram removidos.
-  const [current] = useState(0)
+  const [current, setCurrent] = useState(0)
   const total = media.length
+
+  // Effect para transição automática (Carrossel Automático)
+  useEffect(() => {
+    if (total <= 1) return
+
+    // Se a mídia atual for um vídeo, podemos pausar o autoplay do carrossel 
+    // para deixar o usuário assistir ao vídeo completo sem pular de slide.
+    if (media[current].type === 'video') return
+
+    // Define o tempo de transição (ex: 4000ms = 4 segundos)
+    const interval = setInterval(() => {
+      setCurrent((c) => (c + 1) % total)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [current, total, media])
 
   const renderSlide = (item: MediaItem) => {
     switch (item.type) {
@@ -85,12 +98,22 @@ export default function ProjectMedia({ media, title }: ProjectMediaProps) {
               </div>
             ))}
           </div>
-          
-          {/* 🚫 Os botões anteriores de controle de setas (carousel__btn) foram removidos daqui */}
         </div>
       </BrowserMockup>
 
-      {/* 🚫 A div de paginação por pontos (carousel__dots) foi removida daqui */}
+      {/* Paginação por pontos: Só aparece se houver mais de 1 mídia */}
+      {total > 1 && (
+        <div className="carousel__dots">
+          {media.map((_, i) => (
+            <button
+              key={i}
+              className={`carousel__dot${i === current ? ' carousel__dot--active' : ''}`}
+              onClick={() => setCurrent(i)}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
