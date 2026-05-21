@@ -108,7 +108,7 @@ function Navbar({ active }: { active: string }) {
   return (
     <nav className={`navbar${scrolled?' navbar--scrolled':''}`}>
       <a href="#hero" className="navbar__brand">
-        <img src="/logo.png" alt="Pedreno Tech & Infra" className="navbar__logo"/>
+        <img src="/portfolio/logo.png" alt="Pedreno Tech & Infra" className="navbar__logo"/>
       </a>
       <ul className={`navbar__links${open?' navbar__links--open':''}`}>
         {NAV_LINKS.map(l=>(
