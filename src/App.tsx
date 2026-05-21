@@ -34,23 +34,26 @@ const PROJECTS = [
     ] as MediaItem[],
   },
   {
-    tag: 'IoT / Mobile', title: 'Monitor de Gases', subtitle: 'Projeto SUPER Samsung – UFAM',
+    tag: 'IoT / Mobile', title: 'Sistema de detecção de gases e prevenção de incêndios baseado em IoT e  MQTT.', subtitle: 'Projeto SUPER Samsung – UFAM',
     desc: 'Sistema de monitoramento ambiental com sensores de gás, ESP32 e microcontroladores. Comunicação em tempo real via protocolo MQTT.',
     stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'],
-    link: 'https://github.com/EdsonJuni0r',
+    link: 'https://github.com/EdsonJuni0r/Detector_de_gas_temperature_esp32_mqtt.git',
     media: [
-      { type: 'image', src: '/portfolio/img/Captura de tela 2025-12-07 133938.png', alt: 'App Mobile – Leituras', color: '#0a1628' },
-      { type: 'placeholder', label: 'Dashboard Sensores',    color: '#0d1e38' },
+      { type: 'image', src: '/portfolio/img/image1mqtt.webp', alt: 'Arquitetura' },
+      { type: 'image', src: '/portfolio/img/image1circuito.webp', alt: 'Circuito com sensores e ESP32', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/image1flutter.webp', alt: 'Código Flutter', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/image1app.webp', alt: 'App Mobile – Leituras', color: '#0a1628' },
     ] as MediaItem[],
   },
   {
-    tag: 'Web App', title: 'Biblioteca Digital', subtitle: 'Acervo Acadêmico – UFAM',
-    desc: 'Plataforma web para acervo digital da UFAM. Testes unitários, manutenção evolutiva e colaboração em equipe de desenvolvimento.',
-    stack: ['JavaScript', 'Node.js', 'React', 'PostgreSQL'],
-    link: 'https://github.com/EdsonJuni0r',
+    tag: 'Infraestrutura', title: 'Serviços de Cabeamento e Configuração de Redes de Computadores', subtitle: 'Serviços para SEMSA',
+    desc: 'Projeto de infraestrutura de TI para a Secretaria Municipal de Saúde de Barreirinha. Configuração de redes, manutenção de hardware e suporte técnico para unidades básicas de saúde.',
+    stack: ['Infraestrutura', 'Redes', 'Suporte Técnico'],
     media: [
-      { type: 'placeholder', label: 'Listagem de Publicações', color: '#0a1628' },
-      { type: 'placeholder', label: 'Busca e Filtros',         color: '#0d1e38' },
+      { type: 'image', src: '/portfolio/img/image2infra.webp', alt: 'Instalação de servidor', },
+      { type: 'image', src: '/portfolio/img/image3.webp', alt: 'Serviços na semsa', color: '#0d1e38' },
+      { type: 'image', src: '/portfolio/img/image2infra2.webp', alt: 'Infraestrutura em Unidade de Saúde', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/image2infra3.webp', alt: 'Infraestrutura em Unidade de Saúde', color: '#0a1628' },
     ] as MediaItem[],
   },
 ]
@@ -105,7 +108,7 @@ function Navbar({ active }: { active: string }) {
   return (
     <nav className={`navbar${scrolled?' navbar--scrolled':''}`}>
       <a href="#hero" className="navbar__brand">
-        <img src="logo.png" alt="Pedreno Tech & Infra" className="navbar__logo"/>
+        <img src="/logo.png" alt="Pedreno Tech & Infra" className="navbar__logo"/>
       </a>
       <ul className={`navbar__links${open?' navbar__links--open':''}`}>
         {NAV_LINKS.map(l=>(
@@ -215,7 +218,7 @@ function Projects() {
           {PROJECTS.map((p,i)=>(
             <div key={i} className={`project-item${p.highlight?' project-item--highlight':''}`}>
               {/* Media (esquerda em desktop, topo em mobile) */}
-              <div className="project-item__media">
+              <div className="project-item__media object-cover aspect-video">
                 <ProjectMedia media={p.media} title={p.subtitle || p.title} />
               </div>
               {/* Info (direita em desktop) */}
@@ -231,11 +234,13 @@ function Projects() {
                   {p.stack.map(s=><span key={s} className="stack-pill">{s}</span>)}
                   {p.stackfront && p.stackfront.map(s=><span key={s} className="stack-pill">{s}</span>)}
                 </div>
-                <div className="project-item__actions">
-                  <a href={p.link} target="_blank" rel="noreferrer" className="btn btn--outline btn--sm">
-                    <GitHubIcon /> Ver no GitHub
-                  </a>
-                </div>
+                {p.link && (
+                  <div className="project-item__actions">
+                    <a href={p.link} target="_blank" rel="noreferrer" className="btn btn--outline btn--sm">
+                      <GitHubIcon /> Ver no GitHub
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}

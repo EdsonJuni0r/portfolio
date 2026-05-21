@@ -45,7 +45,7 @@ function VideoSlide({ src, poster }: { src: string; poster?: string }) {
         loop 
         muted
         playsInline 
-        className="media-video__el" 
+        className="media-video__el w-full aspect-video object-cover"
       />
     </div>
   )
@@ -74,7 +74,7 @@ export default function ProjectMedia({ media, title }: ProjectMediaProps) {
   const renderSlide = (item: MediaItem) => {
     switch (item.type) {
       case 'image':
-        return <img src={item.src} alt={item.alt} className="media-image" loading="lazy" />
+        return <img src={item.src} alt={item.alt} className="media-image w-full object-cover relative" loading= "lazy" />
       case 'video':
         return <VideoSlide src={item.src} poster={item.poster} />
       case 'placeholder':
