@@ -165,3 +165,27 @@
   color: var(--white);
   filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
 }
+
+@media (max-width: 768px) {
+
+  .browser-mockup__bar {
+    padding: .45rem .7rem;
+  }
+
+  .browser-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .browser-mockup__url {
+    font-size: .55rem;
+  }
+}
+
+@media (max-width: 600px) {
+
+  .browser-mockup__content {
+    aspect-ratio: 4 / 3;
+  }
+
+}

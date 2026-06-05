@@ -5,19 +5,13 @@ import './App.css'
 const NAV_LINKS = ['sobre', 'serviços', 'projetos', 'habilidades', 'contato']
 
 const SERVICES = [
-  { icon: '⚙️', title: 'Suporte Técnico', desc: 'Atendimento remoto e presencial, manutenção de hardware/software, suporte a ERPs e sistemas de saúde (e-SUS APS, SIH).' },
-  { icon: '🔌', title: 'Infraestrutura de TI', desc: 'Configuração de redes, servidores, estações de trabalho e cabeamento estruturado para ambientes corporativos.' },
-  { icon: '🚀', title: 'Desenvolvimento de APIs', desc: 'APIs REST robustas com Java, Spring Boot, PostgreSQL e Docker. Boas práticas de arquitetura em camadas e versionamento.' },
-  { icon: '🧪', title: 'Qualidade de Software', desc: 'Testes manuais, testes automatizados com JUnit e Mockito, documentação de bugs e revisão de critérios de aceitação.' },
-  { icon: '🌐', title: 'Desenvolvimento Web', desc: 'Interfaces modernas com React, TypeScript e Tailwind CSS. Do protótipo ao deploy com foco em usabilidade.' },
-  { icon: '📋', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
+  { image: 'portfolio/img/services/image3.webp', title: 'Suporte Técnico', desc: 'Atendimento remoto e presencial, manutenção de hardware/software, suporte a ERPs e sistemas de saúde (e-SUS APS, SIH).' },
+  { image: 'portfolio/img/services/infrastructure.webp', title: 'Infraestrutura de TI', desc: 'Configuração de redes, servidores, estações de trabalho e cabeamento estruturado para ambientes corporativos.' },
+  { image: 'portfolio/img/services/apis.webp', title: 'Desenvolvimento de APIs', desc: 'APIs REST robustas com Java, Spring Boot, PostgreSQL e Docker. Boas práticas de arquitetura em camadas e versionamento.' },
+  { image: 'portfolio/img/services/quality.webp', title: 'Qualidade de Software', desc: 'Testes manuais, testes automatizados com JUnit e Mockito, documentação de bugs e revisão de critérios de aceitação.' },
+  { image: 'portfolio/img/services/web development.webp', title: 'Desenvolvimento Web', desc: 'Interfaces modernas com React, TypeScript e Tailwind CSS. Do protótipo ao deploy com foco em usabilidade.' },
+  { image: 'portfolio/img/services/project management.webp', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
 ]
-
-// ── Projects Data ──────────────────────────────────────────────────
-// Para adicionar mídia real substitua os placeholders:
-//   { type: 'image', src: '/portfolio/img/nome.png', alt: 'Descrição' }
-//   { type: 'video', src: '/portfolio/video/demo.mp4' }
-//   { type: 'placeholder', label: 'Em breve', color: '#0d1830' }
 
 const PROJECTS = [
   {
@@ -27,9 +21,6 @@ const PROJECTS = [
     stackfront: ['React', 'TypeScript', 'Tailwind CSS'],
     link: 'https://github.com/EdsonJuni0r/pedrenostore-api.git',
     media: [
-      // Substitua pelos caminhos reais após adicionar as imagens em public/img/
-      // { type: 'image', src: '/portfolio/img/pedreno-auth.png', alt: 'Autenticação JWT' },
-      // { type: 'video', src: '/portfolio/video/pedreno-demo.mp4' },
       { type: 'video', src: '/portfolio/video/1128.mp4'},
     ] as MediaItem[],
   },
@@ -128,26 +119,90 @@ function Navbar({ active }: { active: string }) {
 function Hero() {
   return (
     <section id="hero" className="hero">
-      <CircuitBg/>
-      <div className="hero__inner">
-        <span className="hero__tag"><span className="dot"/>disponível para novos projetos</span>
-        <h1 className="hero__name">Edson <span className="hero__accent">Junior</span></h1>
-        <p className="hero__title">Engenheiro de Software&nbsp;·&nbsp;QA&nbsp;·&nbsp;Suporte T.I</p>
-        <p className="hero__sub">Baseado em Barreirinha, AM — construindo soluções digitais robustas com Java, Spring Boot, React e TypeScript.</p>
-        <div className="hero__actions">
-          <a href="#projetos" className="btn btn--primary">Ver Projetos</a>
-          <a href="#contato" className="btn btn--outline">Fale comigo</a>
+      <CircuitBg />
+
+      <div className="hero__content">
+
+        <div className="hero__info">
+
+          <span className="hero__tag">
+            <span className="dot" />
+            disponível para novos projetos
+          </span>
+
+          <h1 className="hero__name">
+            Edson <span className="hero__accent">Junior</span>
+          </h1>
+
+          <p className="hero__title">
+            Engenheiro de Software · QA · Suporte T.I
+          </p>
+
+          <p className="hero__sub">
+            Baseado em Barreirinha, AM — construindo soluções digitais
+            robustas com Java, Spring Boot, React e TypeScript.
+          </p>
+
+          <div className="hero__actions">
+            <a href="#projetos" className="btn btn--primary">
+              Ver Projetos
+            </a>
+
+            <a href="#contato" className="btn btn--outline">
+              Fale comigo
+            </a>
+          </div>
+
+          <div className="hero__links">
+            <a
+              href="https://github.com/EdsonJuni0r"
+              target="_blank"
+              rel="noreferrer"
+              className="hero__social"
+            >
+              <GitHubIcon />
+              GitHub
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/edson-junior-eng/"
+              target="_blank"
+              rel="noreferrer"
+              className="hero__social"
+            >
+              <LinkedInIcon />
+              LinkedIn
+            </a>
+          </div>
+
         </div>
-        <div className="hero__links">
-          <a href="https://github.com/EdsonJuni0r" target="_blank" rel="noreferrer" className="hero__social">
-            <GitHubIcon/> GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/edson-junior-eng/" target="_blank" rel="noreferrer" className="hero__social">
-            <LinkedInIcon/> LinkedIn
-          </a>
+
+        <div className="hero__photo">
+
+          <div className="hero__photo-card">
+
+            <img
+              src="/portfolio/img/logo.webp"
+              alt="Edson Junior"
+            />
+
+            <div className="hero__badge hero__badge--top">
+              💻 APIs REST
+            </div>
+
+            <div className="hero__badge hero__badge--bottom">
+              ⚙️ Infraestrutura
+            </div>
+
+          </div>
+
         </div>
+
       </div>
-      <div className="hero__scroll-hint"><span/></div>
+
+      <div className="hero__scroll-hint">
+        <span />
+      </div>
     </section>
   )
 }
@@ -189,20 +244,83 @@ function About() {
 }
 
 function Services() {
+  const [current, setCurrent] = useState(0)
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % SERVICES.length)
+  }
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + SERVICES.length) % SERVICES.length)
+  }
+
+    // Auto-play
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrent((prev) => (prev + 1) % SERVICES.length)
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [current])
+
   return (
     <section id="serviços" className="section services">
       <div className="container">
         <SectionLabel>o que eu faço</SectionLabel>
-        <h2 className="section-title">Serviços &amp; <span className="teal">Especialidades</span></h2>
-        <div className="services__grid">
-          {SERVICES.map((s,i)=>(
-            <div key={i} className="service-card">
-              <span className="service-card__icon">{s.icon}</span>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
+
+        <h2 className="section-title">
+          Serviços & <span className="teal">Especialidades</span>
+        </h2>
+
+        <div className="services-carousel">
+
+          <button
+            className="carousel-btn carousel-btn--left"
+            onClick={prevSlide}
+          >
+            ❮
+          </button>
+
+          <div className="service-slide">
+
+            <div className="service-slide__image">
+              <img
+                src={SERVICES[current].image}
+                alt={SERVICES[current].title}
+              />
             </div>
+
+            <div className="service-slide__content">
+              <span className="service-slide__counter">
+                0{current + 1} / 0{SERVICES.length}
+              </span>
+
+              <h2>{SERVICES[current].title}</h2>
+
+              <p>{SERVICES[current].desc}</p>
+            </div>
+
+          </div>
+
+          <button
+            className="carousel-btn carousel-btn--right"
+            onClick={nextSlide}
+          >
+            ❯
+          </button>
+
+        </div>
+
+        <div className="carousel-dots">
+          {SERVICES.map((_, index) => (
+            <button
+              key={index}
+              className={`carousel-dot ${index === current ? 'active' : ''}`}
+              onClick={() => setCurrent(index)}
+            />
           ))}
         </div>
+
       </div>
     </section>
   )
@@ -225,7 +343,7 @@ function Projects() {
               <div className="project-item__info">
                 <div className="project-item__meta">
                   <span className="project-card__tag">{p.tag}</span>
-                  {p.highlight && <span className="project-card__badge">⭐ Principal</span>}
+                  {p.highlight && <span className="project-card__badge">Principal</span>}
                 </div>
                 <h3 className="project-item__title">{p.title}</h3>
                 {p.subtitle && <p className="project-item__subtitle">{p.subtitle}</p>}
