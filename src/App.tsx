@@ -6,12 +6,12 @@ import { FaEnvelope, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
 const NAV_LINKS = ['sobre', 'serviços', 'projetos', 'habilidades', 'contato']
 
 const SERVICES = [
-  { image: 'portfolio/img/services/suporte.webp', title: 'Suporte Técnico', desc: 'Atendimento remoto e presencial, manutenção de hardware/software, suporte a ERPs e sistemas de saúde (e-SUS APS, SIH).' },
-  { image: 'portfolio/img/services/infra.webp', title: 'Infraestrutura de TI', desc: 'Configuração de redes, servidores, estações de trabalho e cabeamento estruturado para ambientes corporativos.' },
-  { image: 'portfolio/img/services/api.webp', title: 'Desenvolvimento de APIs', desc: 'APIs REST robustas com Java, Spring Boot, PostgreSQL e Docker. Boas práticas de arquitetura em camadas e versionamento.' },
-  { image: 'portfolio/img/services/testes.webp', title: 'Qualidade de Software', desc: 'Testes manuais, testes automatizados com JUnit e Mockito, documentação de bugs e revisão de critérios de aceitação.' },
-  { image: 'portfolio/img/services/web.webp', title: 'Desenvolvimento Web', desc: 'Interfaces modernas com React, TypeScript e Tailwind CSS. Do protótipo ao deploy com foco em usabilidade.' },
-  { image: 'portfolio/img/services/gestao.webp', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
+  { image: '/portfolio/img/services/suporte.webp', title: 'Suporte Técnico', desc: 'Atendimento remoto e presencial, manutenção de hardware/software, suporte a ERPs e sistemas de saúde (e-SUS APS, SIH).' },
+  { image: '/portfolio/img/services/infra.webp', title: 'Infraestrutura de TI', desc: 'Configuração de redes, servidores, estações de trabalho e cabeamento estruturado para ambientes corporativos.' },
+  { image: '/portfolio/img/services/api.webp', title: 'Desenvolvimento de APIs', desc: 'APIs REST robustas com Java, Spring Boot, PostgreSQL e Docker. Boas práticas de arquitetura em camadas e versionamento.' },
+  { image: '/portfolio/img/services/testes.webp', title: 'Qualidade de Software', desc: 'Testes manuais, testes automatizados com JUnit e Mockito, documentação de bugs e revisão de critérios de aceitação.' },
+  { image: '/portfolio/img/services/web.webp', title: 'Desenvolvimento Web', desc: 'Interfaces modernas com React, TypeScript e Tailwind CSS. Do protótipo ao deploy com foco em usabilidade.' },
+  { image: '/portfolio/img/services/gestao.webp', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
 ]
 
 const PROJECTS = [
@@ -461,7 +461,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="footer">
-      <img src="portfolio/logo.png" alt="Pedreno Tech & Infra" className="footer__logo"/>
+      <img src="/portfolio/logo.png" alt="Pedreno Tech & Infra" className="footer__logo"/>
       <p>© {new Date().getFullYear()} Edson Carlos Viana Junior · Pedreno Tech &amp; Infra</p>
       <p className="footer__sub">Barreirinha – AM · Soluções Digitais · Sistemas e Hardwares</p>
     </footer>
