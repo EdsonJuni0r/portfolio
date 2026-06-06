@@ -1,16 +1,17 @@
 import ProjectMedia, { type MediaItem } from './ProjectMedia'
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
+import { FaEnvelope, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const NAV_LINKS = ['sobre', 'serviços', 'projetos', 'habilidades', 'contato']
 
 const SERVICES = [
-  { image: 'portfolio/img/services/image3.webp', title: 'Suporte Técnico', desc: 'Atendimento remoto e presencial, manutenção de hardware/software, suporte a ERPs e sistemas de saúde (e-SUS APS, SIH).' },
-  { image: 'portfolio/img/services/infrastructure.webp', title: 'Infraestrutura de TI', desc: 'Configuração de redes, servidores, estações de trabalho e cabeamento estruturado para ambientes corporativos.' },
-  { image: 'portfolio/img/services/apis.webp', title: 'Desenvolvimento de APIs', desc: 'APIs REST robustas com Java, Spring Boot, PostgreSQL e Docker. Boas práticas de arquitetura em camadas e versionamento.' },
-  { image: 'portfolio/img/services/quality.webp', title: 'Qualidade de Software', desc: 'Testes manuais, testes automatizados com JUnit e Mockito, documentação de bugs e revisão de critérios de aceitação.' },
-  { image: 'portfolio/img/services/web development.webp', title: 'Desenvolvimento Web', desc: 'Interfaces modernas com React, TypeScript e Tailwind CSS. Do protótipo ao deploy com foco em usabilidade.' },
-  { image: 'portfolio/img/services/project management.webp', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
+  { image: 'portfolio/img/services/suporte.webp', title: 'Suporte Técnico', desc: 'Atendimento remoto e presencial, manutenção de hardware/software, suporte a ERPs e sistemas de saúde (e-SUS APS, SIH).' },
+  { image: 'portfolio/img/services/infra.webp', title: 'Infraestrutura de TI', desc: 'Configuração de redes, servidores, estações de trabalho e cabeamento estruturado para ambientes corporativos.' },
+  { image: 'portfolio/img/services/api.webp', title: 'Desenvolvimento de APIs', desc: 'APIs REST robustas com Java, Spring Boot, PostgreSQL e Docker. Boas práticas de arquitetura em camadas e versionamento.' },
+  { image: 'portfolio/img/services/testes.webp', title: 'Qualidade de Software', desc: 'Testes manuais, testes automatizados com JUnit e Mockito, documentação de bugs e revisão de critérios de aceitação.' },
+  { image: 'portfolio/img/services/web.webp', title: 'Desenvolvimento Web', desc: 'Interfaces modernas com React, TypeScript e Tailwind CSS. Do protótipo ao deploy com foco em usabilidade.' },
+  { image: 'portfolio/img/services/gestao.webp', title: 'Gestão e Documentação', desc: 'Registro de chamados via 1Doc, controle de patrimônio, documentação técnica e gestão ágil com Scrum.' },
 ]
 
 const PROJECTS = [
@@ -30,10 +31,10 @@ const PROJECTS = [
     stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'],
     link: 'https://github.com/EdsonJuni0r/Detector_de_gas_temperature_esp32_mqtt.git',
     media: [
-      { type: 'image', src: '/portfolio/img/image1mqtt.webp', alt: 'Arquitetura' },
-      { type: 'image', src: '/portfolio/img/image1circuito.webp', alt: 'Circuito com sensores e ESP32', color: '#0a1628' },
-      { type: 'image', src: '/portfolio/img/image1flutter.webp', alt: 'Código Flutter', color: '#0a1628' },
-      { type: 'image', src: '/portfolio/img/image1app.webp', alt: 'App Mobile – Leituras', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/projetos/image1mqtt.webp', alt: 'Arquitetura' },
+      { type: 'image', src: '/portfolio/img/projetos/image1circuito.webp', alt: 'Circuito com sensores e ESP32', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/projetos/image1flutter.webp', alt: 'Código Flutter', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/projetos/image1app.webp', alt: 'App Mobile – Leituras', color: '#0a1628' },
     ] as MediaItem[],
   },
   {
@@ -41,10 +42,10 @@ const PROJECTS = [
     desc: 'Projeto de infraestrutura de TI para a Secretaria Municipal de Saúde de Barreirinha. Configuração de redes, manutenção de hardware e suporte técnico para unidades básicas de saúde.',
     stack: ['Infraestrutura', 'Redes', 'Suporte Técnico'],
     media: [
-      { type: 'image', src: '/portfolio/img/image2infra.webp', alt: 'Instalação de servidor', },
-      { type: 'image', src: '/portfolio/img/image3.webp', alt: 'Serviços na semsa', color: '#0d1e38' },
-      { type: 'image', src: '/portfolio/img/image2infra2.webp', alt: 'Infraestrutura em Unidade de Saúde', color: '#0a1628' },
-      { type: 'image', src: '/portfolio/img/image2infra3.webp', alt: 'Infraestrutura em Unidade de Saúde', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/projetos/image2infra.webp', alt: 'Instalação de servidor', },
+      { type: 'image', src: '/portfolio/img/projetos/image3.webp', alt: 'Serviços na semsa', color: '#0d1e38' },
+      { type: 'image', src: '/portfolio/img/projetos/image2infra2.webp', alt: 'Infraestrutura em Unidade de Saúde', color: '#0a1628' },
+      { type: 'image', src: '/portfolio/img/projetos/image2infra3.webp', alt: 'Infraestrutura em Unidade de Saúde', color: '#0a1628' },
     ] as MediaItem[],
   },
 ]
@@ -135,12 +136,12 @@ function Hero() {
           </h1>
 
           <p className="hero__title">
-            Engenheiro de Software · QA · Suporte T.I
+            Engenheiro de Software · Suporte T.I
           </p>
 
           <p className="hero__sub">
-            Baseado em Barreirinha, AM — construindo soluções digitais
-            robustas com Java, Spring Boot, React e TypeScript.
+            Tecnico em Suporte de Informática · Experiência em soluções digitais
+            robustas com Java, Spring Boot, React e TypeScript · Entusiasta em Qualidade de Software e Infraestrutura de Redes.
           </p>
 
           <div className="hero__actions">
@@ -182,16 +183,16 @@ function Hero() {
           <div className="hero__photo-card">
 
             <img
-              src="/portfolio/img/logo.webp"
+              src="/portfolio/img/services/prof.png"
               alt="Edson Junior"
             />
 
             <div className="hero__badge hero__badge--top">
-              💻 APIs REST
+              Suport IT
             </div>
 
             <div className="hero__badge hero__badge--bottom">
-              ⚙️ Infraestrutura
+              Software Engineer
             </div>
 
           </div>
@@ -216,7 +217,7 @@ function About() {
           <div className="about__text">
             <h2 className="section-title">Tecnologia na veia,<br/><span className="teal">qualidade como padrão.</span></h2>
             <p>Sou Engenheiro de Software formado pela UFAM, com experiência prática em suporte técnico em Unidades de Saúde e desenvolvimento de software. Atualmente curso Pós-Graduação em <strong>Engenharia da Qualidade de Software</strong>.</p>
-            <p>Minha rotina mistura atendimento técnico no campo — com sistemas como e-SUS APS e ERPs de saúde — e desenvolvimento de projetos pessoais focados em <strong>APIs REST</strong>, testes automatizados e boas práticas de engenharia.</p>
+            <p>Atuo unindo infraestrutura, suporte técnico e desenvolvimento de software para criar soluções robustas para ambientes críticos, especialmente na área da saúde pública e na gestão de sistemas de informação.</p>
             <p>Fundei a <span className="teal">Pedreno Tech &amp; Infra</span> para oferecer soluções digitais e de infraestrutura pensadas para a realidade de Barreirinha e região.</p>
             <div className="about__chips">
               {['Proativo','Comunicativo','Orientado a qualidade','Aprendizado contínuo','Trabalho em equipe'].map(t=>(
@@ -258,7 +259,7 @@ function Services() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrent((prev) => (prev + 1) % SERVICES.length)
-    }, 5000)
+    }, 6000)
 
     return () => clearTimeout(timer)
   }, [current])
@@ -398,24 +399,58 @@ function Contact() {
         <p className="contact__sub">Aberto a freelas, projetos e oportunidades. Respondo rápido!</p>
         <div className="contact__cards">
           <a href="mailto:vianaedsonjunior@gmail.com" className="contact-card">
-            <span className="contact-card__icon">✉️</span>
+            <span className="contact-card__icon">
+              <FaEnvelope />
+            </span>
             <span className="contact-card__label">E-mail</span>
-            <span className="contact-card__value">vianaedsonjunior@gmail.com</span>
+            <span className="contact-card__value">
+              vianaedsonjunior@gmail.com
+            </span>
           </a>
-          <a href="https://wa.me/5592993270197" target="_blank" rel="noreferrer" className="contact-card">
-            <span className="contact-card__icon">💬</span>
+
+          <a
+            href="https://wa.me/5592993270197"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-card"
+          >
+            <span className="contact-card__icon">
+              <FaWhatsapp />
+            </span>
             <span className="contact-card__label">WhatsApp</span>
-            <span className="contact-card__value">+55 92 99327-0197</span>
+            <span className="contact-card__value">
+              +55 92 99327-0197
+            </span>
           </a>
-          <a href="https://www.linkedin.com/in/edson-junior-eng/" target="_blank" rel="noreferrer" className="contact-card">
-            <span className="contact-card__icon">💼</span>
+
+          <a
+            href="https://www.linkedin.com/in/edson-junior-eng/"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-card"
+          >
+            <span className="contact-card__icon">
+              <FaLinkedin />
+            </span>
             <span className="contact-card__label">LinkedIn</span>
-            <span className="contact-card__value">edson-junior-eng</span>
+            <span className="contact-card__value">
+              edson-junior-eng
+            </span>
           </a>
-          <a href="https://github.com/EdsonJuni0r" target="_blank" rel="noreferrer" className="contact-card">
-            <span className="contact-card__icon">🐙</span>
+
+          <a
+            href="https://github.com/EdsonJuni0r"
+            target="_blank"
+            rel="noreferrer"
+            className="contact-card"
+          >
+            <span className="contact-card__icon">
+              <FaGithub />
+            </span>
             <span className="contact-card__label">GitHub</span>
-            <span className="contact-card__value">EdsonJuni0r</span>
+            <span className="contact-card__value">
+              EdsonJuni0r
+            </span>
           </a>
         </div>
       </div>
@@ -426,7 +461,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="footer">
-      <img src="logo.png" alt="Pedreno Tech & Infra" className="footer__logo"/>
+      <img src="portfolio/logo.png" alt="Pedreno Tech & Infra" className="footer__logo"/>
       <p>© {new Date().getFullYear()} Edson Carlos Viana Junior · Pedreno Tech &amp; Infra</p>
       <p className="footer__sub">Barreirinha – AM · Soluções Digitais · Sistemas e Hardwares</p>
     </footer>

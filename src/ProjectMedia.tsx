@@ -66,7 +66,7 @@ export default function ProjectMedia({ media, title }: ProjectMediaProps) {
     // Define o tempo de transição (ex: 4000ms = 4 segundos)
     const interval = setInterval(() => {
       setCurrent((c) => (c + 1) % total)
-    }, 4000)
+    }, 6000)
 
     return () => clearInterval(interval)
   }, [current, total, media])
