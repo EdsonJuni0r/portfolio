@@ -379,6 +379,7 @@
 
   .service-slide__content {
     padding: 1.5rem;
+    height: 250px;
   }
 
   .service-slide__content h3 {
