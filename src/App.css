@@ -371,20 +371,24 @@
 
   .service-slide {
     grid-template-columns: 1fr;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: transform .3s ease;
   }
   .carousel-btn {
-    width: 32px;
-    height: 32px;
     display: none;
   }
 
   .service-slide__image {
     height: 250px;
+    pointer-events: none;
   }
 
   .service-slide__content {
     padding: 1.5rem;
     height: 250px;
+    margin-top: -50px;
   }
 
   .service-slide__content h3 {
