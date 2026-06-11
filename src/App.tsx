@@ -1,5 +1,6 @@
 import ProjectMedia, { type MediaItem } from './ProjectMedia'
 import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 import { FaEnvelope, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
 
@@ -247,51 +248,40 @@ function About() {
 function Services() {
   const [current, setCurrent] = useState(0)
 
-  const touchStartX = useRef(0)
-  const touchEndX = useRef(0)
-
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % SERVICES.length)
   }
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + SERVICES.length) % SERVICES.length)
+    setCurrent((prev) =>
+      prev === 0 ? SERVICES.length - 1 : prev - 1
+    )
   }
 
-  // Auto-play
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrent((prev) => (prev + 1) % SERVICES.length)
-    }, 6000)
-
+    const timer = setTimeout(nextSlide, 6000)
     return () => clearTimeout(timer)
   }, [current])
 
-  // Touch events for mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.changedTouches[0].screenX
-  }
+  const handleDragEnd = (
+    _: unknown,
+    info: { offset: { x: number } }
+  ) => {
+    const swipe = info.offset.x
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.changedTouches[0].screenX
-  }
-
-  const handleTouchEnd = () => {
-    const distance = touchStartX.current - touchEndX.current
-
-    // sensibilidade mínima
-    if (distance > 50) {
-      nextSlide() // deslizou para esquerda
+    if (swipe < -80) {
+      nextSlide()
     }
 
-    if (distance < -50) {
-      prevSlide() // deslizou para direita
+    if (swipe > 80) {
+      prevSlide()
     }
   }
 
   return (
     <section id="serviços" className="section services">
       <div className="container">
+
         <SectionLabel>o que eu faço</SectionLabel>
 
         <h2 className="section-title">
@@ -307,31 +297,44 @@ function Services() {
             ❮
           </button>
 
-          <div 
-            className="service-slide" 
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
+          <AnimatePresence mode="wait">
 
-            <div className="service-slide__image">
-              <img
-                src={SERVICES[current].image}
-                alt={SERVICES[current].title}
-              />
-            </div>
+            <motion.div
+              key={current}
+              className="service-slide"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
+              initial={{ opacity: 0, x: 120, scale: 0.96 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -120, scale: 0.96 }}
+              transition={{
+                duration: 0.4,
+                ease: 'easeInOut'
+              }}
+            >
 
-            <div className="service-slide__content">
-              <span className="service-slide__counter">
-                0{current + 1} / 0{SERVICES.length}
-              </span>
+              <div className="service-slide__image">
+                <img
+                  src={SERVICES[current].image}
+                  alt={SERVICES[current].title}
+                />
+              </div>
 
-              <h2>{SERVICES[current].title}</h2>
+              <div className="service-slide__content">
+                <span className="service-slide__counter">
+                  0{current + 1} / 0{SERVICES.length}
+                </span>
 
-              <p>{SERVICES[current].desc}</p>
-            </div>
+                <h3>{SERVICES[current].title}</h3>
 
-          </div>
+                <p>{SERVICES[current].desc}</p>
+              </div>
+
+            </motion.div>
+
+          </AnimatePresence>
 
           <button
             className="carousel-btn carousel-btn--right"
@@ -346,7 +349,9 @@ function Services() {
           {SERVICES.map((_, index) => (
             <button
               key={index}
-              className={`carousel-dot ${index === current ? 'active' : ''}`}
+              className={`carousel-dot ${
+                index === current ? 'active' : ''
+              }`}
               onClick={() => setCurrent(index)}
             />
           ))}

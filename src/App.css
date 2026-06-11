@@ -372,10 +372,13 @@
   .service-slide {
     grid-template-columns: 1fr;
     touch-action: pan-y;
-    user-select: none;
-    -webkit-user-select: none;
-    transition: transform .3s ease;
+    cursor: grab;
+    transition: transform .1s ease;
   }
+  .service-slide:active {
+    cursor: grabbing;
+  }
+
   .carousel-btn {
     display: none;
   }
