@@ -247,6 +247,9 @@ function About() {
 function Services() {
   const [current, setCurrent] = useState(0)
 
+  const touchStartX = useRef(0)
+  const touchEndX = useRef(0)
+
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % SERVICES.length)
   }
@@ -255,7 +258,7 @@ function Services() {
     setCurrent((prev) => (prev - 1 + SERVICES.length) % SERVICES.length)
   }
 
-    // Auto-play
+  // Auto-play
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrent((prev) => (prev + 1) % SERVICES.length)
@@ -263,6 +266,28 @@ function Services() {
 
     return () => clearTimeout(timer)
   }, [current])
+
+  // Touch events for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].screenX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].screenX
+  }
+
+  const handleTouchEnd = () => {
+    const distance = touchStartX.current - touchEndX.current
+
+    // sensibilidade mínima
+    if (distance > 50) {
+      nextSlide() // deslizou para esquerda
+    }
+
+    if (distance < -50) {
+      prevSlide() // deslizou para direita
+    }
+  }
 
   return (
     <section id="serviços" className="section services">
@@ -282,7 +307,12 @@ function Services() {
             ❮
           </button>
 
-          <div className="service-slide">
+          <div 
+            className="service-slide" 
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
 
             <div className="service-slide__image">
               <img
