@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import './ProjectMedia.css'
 
+/* ─── Types ─────────────────────────────────────────────────────────── */
 export type MediaItem =
-  | { type: 'image'; src: string; alt: string }
-  | { type: 'video'; src: string; poster?: string }
+  | { type: 'image';       src: string; alt: string }
+  | { type: 'video';       src: string; poster?: string }
   | { type: 'placeholder'; label: string; color?: string }
 
 interface ProjectMediaProps {
@@ -11,6 +12,7 @@ interface ProjectMediaProps {
   title: string
 }
 
+/* ─── Sub-components ─────────────────────────────────────────────────── */
 function BrowserMockup({ children, title }: { children: React.ReactNode; title: string }) {
   return (
     <div className="browser-mockup">
@@ -27,58 +29,51 @@ function BrowserMockup({ children, title }: { children: React.ReactNode; title: 
   )
 }
 
-function PlaceholderSlide({ label, color }: { label: string; color?: string }) {
-  return (
-    <div className="media-placeholder" style={{ background: color || 'var(--navy-3)' }}>
-      <span className="media-placeholder__label">{label}</span>
-    </div>
-  )
+function ImageSlide({ src, alt }: { src: string; alt: string }) {
+  return <img src={src} alt={alt} className="media-image" loading="lazy" />
 }
 
 function VideoSlide({ src, poster }: { src: string; poster?: string }) {
   return (
     <div className="media-video">
-      <video 
-        src={src} 
-        poster={poster} 
+      <video
+        src={src}
+        poster={poster}
         autoPlay
-        loop 
+        loop
         muted
-        playsInline 
-        className="media-video__el w-full aspect-video object-cover"
+        playsInline
+        className="media-video__el"
       />
     </div>
   )
 }
 
+function PlaceholderSlide({ label, color }: { label: string; color?: string }) {
+  return (
+    <div className="media-placeholder" style={{ background: color ?? 'var(--navy-3)' }}>
+      <span className="media-placeholder__label">{label}</span>
+    </div>
+  )
+}
+
+/* ─── Main component ─────────────────────────────────────────────────── */
 export default function ProjectMedia({ media, title }: ProjectMediaProps) {
   const [current, setCurrent] = useState(0)
   const total = media.length
 
-  // Effect para transição automática (Carrossel Automático)
+  // Auto-advance carousel — skip for video slides (let them play)
   useEffect(() => {
-    if (total <= 1) return
-
-    // Se a mídia atual for um vídeo, podemos pausar o autoplay do carrossel 
-    // para deixar o usuário assistir ao vídeo completo sem pular de slide.
-    if (media[current].type === 'video') return
-
-    // Define o tempo de transição (ex: 4000ms = 4 segundos)
-    const interval = setInterval(() => {
-      setCurrent((c) => (c + 1) % total)
-    }, 6000)
-
-    return () => clearInterval(interval)
+    if (total <= 1 || media[current].type === 'video') return
+    const id = setInterval(() => setCurrent(c => (c + 1) % total), 6000)
+    return () => clearInterval(id)
   }, [current, total, media])
 
   const renderSlide = (item: MediaItem) => {
     switch (item.type) {
-      case 'image':
-        return <img src={item.src} alt={item.alt} className="media-image w-full object-cover relative" loading= "lazy" />
-      case 'video':
-        return <VideoSlide src={item.src} poster={item.poster} />
-      case 'placeholder':
-        return <PlaceholderSlide label={item.label} color={item.color} />
+      case 'image':       return <ImageSlide src={item.src} alt={item.alt} />
+      case 'video':       return <VideoSlide src={item.src} poster={item.poster} />
+      case 'placeholder': return <PlaceholderSlide label={item.label} color={item.color} />
     }
   }
 
@@ -101,7 +96,6 @@ export default function ProjectMedia({ media, title }: ProjectMediaProps) {
         </div>
       </BrowserMockup>
 
-      {/* Paginação por pontos: Só aparece se houver mais de 1 mídia */}
       {total > 1 && (
         <div className="carousel__dots">
           {media.map((_, i) => (
