@@ -1,9 +1,12 @@
 import ProjectMedia, { type MediaItem } from './ProjectMedia'
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import './App.css'
 import { FaEnvelope, FaWhatsapp, FaLinkedin, FaGithub } from 'react-icons/fa'
+import './App.css'
 
+/* ═══════════════════════════════════════════════════════════
+   DATA
+   ═══════════════════════════════════════════════════════════ */
 const NAV_LINKS = ['sobre', 'serviços', 'projetos', 'habilidades', 'contato']
 
 const SERVICES = [
@@ -17,7 +20,10 @@ const SERVICES = [
 
 const PROJECTS = [
   {
-    tag: 'API REST', title: 'Pedreno Store', subtitle: 'Sistema de Gestão de Crediário', highlight: true,
+    tag: 'API REST', 
+    title: 'Pedreno Store', 
+    subtitle: 'Sistema de Gestão de Crediário', 
+    highlight: true,
     desc: 'Sistema de gestão de crediário (fiado) para pequenos comércios. API completa com autenticação JWT, controle de roles, suporte a compras multi-item e testes automatizados.',
     stack: ['Java', 'Spring Boot', 'PostgreSQL', 'Docker', 'JUnit 5', 'Mockito'],
     stackfront: ['React', 'TypeScript', 'Tailwind CSS'],
@@ -27,7 +33,9 @@ const PROJECTS = [
     ] as MediaItem[],
   },
   {
-    tag: 'IoT / Mobile', title: 'Sistema de detecção de gases e prevenção de incêndios baseado em IoT e  MQTT.', subtitle: 'Projeto SUPER Samsung – UFAM',
+    tag: 'IoT / Mobile', 
+    title: 'Sistema de detecção de gases e prevenção de incêndios baseado em IoT e  MQTT.', 
+    subtitle: 'Projeto SUPER Samsung – UFAM',
     desc: 'Sistema de monitoramento ambiental com sensores de gás, ESP32 e microcontroladores. Comunicação em tempo real via protocolo MQTT.',
     stack: ['Flutter', 'Arduino', 'ESP32', 'MQTT'],
     link: 'https://github.com/EdsonJuni0r/Detector_de_gas_temperature_esp32_mqtt.git',
@@ -39,7 +47,9 @@ const PROJECTS = [
     ] as MediaItem[],
   },
   {
-    tag: 'Infraestrutura', title: 'Serviços de Cabeamento e Configuração de Redes de Computadores', subtitle: 'Serviços para SEMSA',
+    tag: 'Infraestrutura', 
+    title: 'Serviços de Cabeamento e Configuração de Redes de Computadores', 
+    subtitle: 'Serviços para SEMSA',
     desc: 'Projeto de infraestrutura de TI para a Secretaria Municipal de Saúde de Barreirinha. Configuração de redes, manutenção de hardware e suporte técnico para unidades básicas de saúde.',
     stack: ['Infraestrutura', 'Redes', 'Suporte Técnico'],
     media: [
@@ -71,6 +81,9 @@ const TIMELINE = [
   { period: 'Concluído – abr/2024', role: 'Bacharelado em Engenharia de Software', org: 'ICET – UFAM, Itacoatiara – AM', type: 'edu' },
 ]
 
+/* ═══════════════════════════════════════════════════════════
+   CIRCUIT BACKGROUND
+   ═══════════════════════════════════════════════════════════ */
 function CircuitBg() {
   return (
     <svg className="circuit-bg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden>
@@ -90,6 +103,9 @@ function CircuitBg() {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════════════════════════════ */
 function Navbar({ active }: { active: string }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -118,6 +134,9 @@ function Navbar({ active }: { active: string }) {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════ */
 function Hero() {
   return (
     <section id="hero" className="hero">
@@ -209,6 +228,9 @@ function Hero() {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   ABOUT
+   ═══════════════════════════════════════════════════════════ */
 function About() {
   return (
     <section id="sobre" className="section about">
@@ -245,6 +267,9 @@ function About() {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SERVICES
+   ═══════════════════════════════════════════════════════════ */
 function Services() {
   const [current, setCurrent] = useState(0)
 
@@ -362,6 +387,9 @@ function Services() {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   PROJECTS
+   ═══════════════════════════════════════════════════════════ */
 function Projects() {
   return (
     <section id="projetos" className="section projects">
@@ -404,6 +432,9 @@ function Projects() {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SKILLS
+   ═══════════════════════════════════════════════════════════ */
 function Skills() {
   return (
     <section id="habilidades" className="section skills">
@@ -425,7 +456,17 @@ function Skills() {
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   CONTACT
+   ═══════════════════════════════════════════════════════════ */
 function Contact() {
+  const cards = [
+    { href: 'mailto:vianaedsonjunior@gmail.com', icon: <FaEnvelope />, label: 'E-mail',    value: 'vianaedsonjunior@gmail.com' },
+    { href: 'https://wa.me/5592993270197',       icon: <FaWhatsapp />, label: 'WhatsApp',  value: '+55 92 99327-0197' },
+    { href: 'https://www.linkedin.com/in/edson-junior-eng/', icon: <FaLinkedin />, label: 'LinkedIn', value: 'edson-junior-eng' },
+    { href: 'https://github.com/EdsonJuni0r',    icon: <FaGithub />,   label: 'GitHub',    value: 'EdsonJuni0r' },
+  ]
+
   return (
     <section id="contato" className="section contact">
       <div className="container">
@@ -433,66 +474,22 @@ function Contact() {
         <h2 className="section-title">Entre em <span className="teal">Contato</span></h2>
         <p className="contact__sub">Aberto a freelas, projetos e oportunidades. Respondo rápido!</p>
         <div className="contact__cards">
-          <a href="mailto:vianaedsonjunior@gmail.com" className="contact-card">
-            <span className="contact-card__icon">
-              <FaEnvelope />
-            </span>
-            <span className="contact-card__label">E-mail</span>
-            <span className="contact-card__value">
-              vianaedsonjunior@gmail.com
-            </span>
-          </a>
-
-          <a
-            href="https://wa.me/5592993270197"
-            target="_blank"
-            rel="noreferrer"
-            className="contact-card"
-          >
-            <span className="contact-card__icon">
-              <FaWhatsapp />
-            </span>
-            <span className="contact-card__label">WhatsApp</span>
-            <span className="contact-card__value">
-              +55 92 99327-0197
-            </span>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/edson-junior-eng/"
-            target="_blank"
-            rel="noreferrer"
-            className="contact-card"
-          >
-            <span className="contact-card__icon">
-              <FaLinkedin />
-            </span>
-            <span className="contact-card__label">LinkedIn</span>
-            <span className="contact-card__value">
-              edson-junior-eng
-            </span>
-          </a>
-
-          <a
-            href="https://github.com/EdsonJuni0r"
-            target="_blank"
-            rel="noreferrer"
-            className="contact-card"
-          >
-            <span className="contact-card__icon">
-              <FaGithub />
-            </span>
-            <span className="contact-card__label">GitHub</span>
-            <span className="contact-card__value">
-              EdsonJuni0r
-            </span>
-          </a>
+          {cards.map(c => (
+            <a key={c.label} href={c.href} target="_blank" rel="noreferrer" className="contact-card">
+              <span className="contact-card__icon">{c.icon}</span>
+              <span className="contact-card__label">{c.label}</span>
+              <span className="contact-card__value">{c.value}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
   )
 }
 
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
 function Footer() {
   return (
     <footer className="footer">
@@ -507,6 +504,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   return <p className="section-label"><span>//</span> {children}</p>
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SHARED ICONS
+   ═══════════════════════════════════════════════════════════ */
 function GitHubIcon() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
 }
@@ -515,6 +515,9 @@ function LinkedInIcon() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
 }
 
+/* ═══════════════════════════════════════════════════════════
+   APP ROOT
+   ═══════════════════════════════════════════════════════════ */
 export default function App() {
   const [activeSection, setActiveSection] = useState('')
   const observerRef = useRef<IntersectionObserver | null>(null)
