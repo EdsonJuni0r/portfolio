@@ -203,7 +203,7 @@ function Hero() {
           <div className="hero__photo-card">
 
             <img
-              src="/portfolio/img/services/prof.png"
+              src="/portfolio/img/photo2.webp"
               alt="Edson Junior"
             />
 
