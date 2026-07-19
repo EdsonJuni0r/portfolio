@@ -169,8 +169,8 @@ function About() {
           <div className="about__text">
             <h2 className="section-title">Tecnologia na veia,<br/><span className="teal">qualidade como padrão.</span></h2>
             <p>Sou Engenheiro de Software formado pela UFAM, com experiência prática em suporte técnico em Unidades de Saúde e desenvolvimento de software. Atualmente curso Pós-Graduação em <strong>Engenharia da Qualidade de Software</strong>.</p>
-            <p>Atuo unindo infraestrutura, suporte técnico e desenvolvimento de software para criar soluções robustas para ambientes críticos, especialmente na área da saúde pública e na gestão de sistemas de informação.</p>
-            <p>Fundei a <span className="teal">Pedreno Tech &amp; Infra</span> para oferecer soluções digitais e de infraestrutura pensadas para a realidade de Barreirinha e região.</p>
+            <p>Atuo unindo infraestrutura, suporte técnico e desenvolvimento de software para criar soluções para gestão de negócios, e na gestão de sistemas de informação.</p>
+            <p>Criei a <span className="teal">Pedreno Tech &amp; Infra</span> para oferecer soluções digitais, manutenção de hardwares e softwares para a realidade de Barreirinha e região.</p>
             <div className="about__chips">
               {['Proativo','Comunicativo','Orientado a qualidade','Aprendizado contínuo','Trabalho em equipe'].map(t=>(
                 <span key={t} className="chip">{t}</span>
